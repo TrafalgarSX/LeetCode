@@ -1,8 +1,8 @@
 /*
- * @Author: your name
+ * @Author: guo yawen
  * @Date: 2021-03-30 00:44:28
- * @LastEditTime: 2021-03-30 00:55:52
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2021-04-05 00:58:55
+ * @LastEditors: guo yawen
  * @Description: In User Settings Edit
  * @FilePath: \LeetCode\2.两数相加.java
  */
@@ -24,13 +24,7 @@
  * }
  */
 
- class ListNode {
-      int val;
-      ListNode next;
-      ListNode() {}
-      ListNode(int val) { this.val = val; }
-      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-  }
+
 class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode vhead = new ListNode(-1);

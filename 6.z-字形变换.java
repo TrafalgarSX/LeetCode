@@ -1,9 +1,8 @@
 /*
  * @Author: guo yawen
  * @Date: 2021-03-30 14:50:52
- * @LastEditTime: 2021-03-30 23:52:38
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+ * @LastEditTime: 2021-04-05 00:49:29
+ * @LastEditors: guo yawen
  * @FilePath: \LeetCode\6.z-字形变换.java
  */
 /*
