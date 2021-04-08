@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /*
  * @Author: guo yawen
  * @Date: 2021-04-06 14:49:38
- * @LastEditTime: 2021-04-08 13:48:23
+ * @LastEditTime: 2021-04-08 14:04:09
  * @LastEditors: guo yawen
  * @Description: 
  * @FilePath: \LeetCode\73.矩阵置零.java
@@ -53,6 +53,28 @@ class Solution {
                 }
             }
         }
+    }
+    //官方方法，巨简单，上面的自己的方法想复杂了。 不是最简方法，有常量级空间复杂度的方法。
+    public void setZeroesOfficial(int[][] matrix) {
+        boolean[] row = new boolean[matrix.length];
+        boolean[] col = new boolean[matrix[0].length];
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if ( matrix[i][j] == 0 ) {
+                    row[i] = col[j] = true;
+                }
+            }
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                if ( row[i] || col[j] ) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+
+
     }
 }
 // @lc code=end
