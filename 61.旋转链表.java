@@ -1,7 +1,7 @@
 /*
  * @Author: guo yawen
  * @Date: 2021-04-10 23:57:49
- * @LastEditTime: 2021-04-11 00:15:55
+ * @LastEditTime: 2021-04-11 11:56:38
  * @LastEditors: guo yawen
  * @Description: 
  * @FilePath: \LeetCode\61.旋转链表.java
@@ -25,6 +25,32 @@
  * }
  */
 class Solution {
+    //形成环
+    public ListNode rotateRightLoop(ListNode head, int k) {
+        if(k == 0 || head == null || head.next == null){
+            return head;
+        }
+        ListNode pre = new ListNode(-1,head);
+        int len = 0;
+        while (pre.next != null ) {
+            len++;
+            pre = pre.next;
+        }
+        int count = len - k % len;
+        //k 为n 的整数倍
+        if(count == len){
+            return head;
+        }
+        //这句不能放到前面，否则上面会返回环。
+        pre.next = head;
+        for (int i = 0; i < count; i++) {
+            pre = pre.next;
+        }
+        head = pre.next;
+        pre.next = null;
+        return head;
+
+    }
     public ListNode reverse(ListNode head){
         ListNode pre = null;
         ListNode curr = head;
@@ -38,6 +64,7 @@ class Solution {
         }
         return pre;
     }
+    //旋转链表方法
     public ListNode rotateRight(ListNode head, int k) {
         //list 的长度为 0 或 1 时 返回空或自己， 即都是自己
         if(head == null || head.next == null){
