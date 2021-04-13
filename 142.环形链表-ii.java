@@ -1,9 +1,8 @@
-import java.util.HashSet;
 
 /*
  * @Author: guo yawen
  * @Date: 2021-04-09 23:20:01
- * @LastEditTime: 2021-04-12 23:40:52
+ * @LastEditTime: 2021-04-13 15:41:41
  * @LastEditors: guo yawen
  * @Description: 
  * @FilePath: \LeetCode\142.环形链表-ii.java
@@ -48,6 +47,9 @@ public class Solution {
      * ! 数学证明学会
      * ？ 为什么快慢指针相遇时，慢指针没有走完一圈环
      * ？ 快慢指针相遇的 长度问题。
+     * *设链表中环外部分的长度为 a。slow 指针进入环后，又走了 b 的距离与 fast 相遇。此时，fast 指针已经走完了环的 n 圈
+     * ! a + n(b + c) + b = 2 (a + b) 快指针的速度是满指针的二倍。
+     * ! a = c + (n - 1)(b + c)
      * TODO 完成这道题。
      * @param head
      * @return
