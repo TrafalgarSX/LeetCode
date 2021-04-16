@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /*
  * @Author: guo yawen
  * @Date: 2021-04-16 23:10:54
- * @LastEditTime: 2021-04-16 23:57:29
+ * @LastEditTime: 2021-04-17 00:28:24
  * @LastEditors: guo yawen
  * @Description: 
  * @FilePath: \LeetCode\18.四数之和.java
@@ -24,12 +25,13 @@ class Solution {
             return list;
         }
         Arrays.sort(nums);
-        for (int i = 0; i < nums.length; i++) {
-            if(nums[i] > target){
-                break;
-            }
+        for (int i = 0; i < nums.length - 3; i++) {
             if( i > 0 && nums[i - 1] == nums[i]){
                 continue;
+            }
+            //!有了这四个 就要保证不能数组越界
+            if(nums[i] + nums[i+1] + nums[i+2] + nums[i+3] > target){
+                break;
             }
             for (int j = i + 1; j < nums.length; j++) {
                 if( j > i + 1 && nums[j] == nums[j - 1]){
@@ -47,7 +49,7 @@ class Solution {
                         while(left < right && nums[right] == nums[right - 1]) right--;
                         right--;
                     }
-                    if((nums[i] + nums[j] + nums[left] + nums[right]) < target ){
+                    else if(nums[i] + nums[j] + nums[left] + nums[right] < target ){
                         left++;
                     }else{
                         right--;
