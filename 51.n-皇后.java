@@ -7,7 +7,7 @@ import java.util.Set;
 /*
  * @Author: guo yawen
  * @Date: 2021-04-18 21:33:35
- * @LastEditTime: 2021-04-18 23:03:25
+ * @LastEditTime: 2021-04-19 13:10:47
  * @LastEditors: guo yawen
  * @Description: 
  * @FilePath: \LeetCode\51.n-皇后.java
@@ -46,9 +46,14 @@ class Solution {
         if(layer == n){
             /**
              * !构造函数的方式是浅复制，拷贝的是引用。
+             * !这种构造函数底层用的是Arrays.copy方法
+             * !这个方法，会新创建一个数组，复制原数组中元素的引用。
+             * !改变原来的数组，不会改变复制后的数组，但由于内部对象复制的是引用
+             * !改变数组内元素会改变复制后数组中元素。
              * *ret.add(new ArrayList<>(solution));
              */
-            ret.add(deepCopy(solution));
+            // ret.add(deepCopy(solution));
+            ret.add(new ArrayList<String>(solution));
             return;
         }
 
