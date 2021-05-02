@@ -3,7 +3,7 @@ import java.util.Arrays;
 /*
  * @Author: guo yawen
  * @Date: 2021-04-30 22:51:29
- * @LastEditTime: 2021-05-02 23:54:15
+ * @LastEditTime: 2021-05-03 00:13:22
  * @LastEditors: guo yawen
  * @Description: 
  * @FilePath: \LeetCode\41.缺失的第一个正数.java
@@ -17,6 +17,13 @@ import java.util.Arrays;
 
 // @lc code=start
 class Solution {
+    /**
+     * *思路是把在[1,n + 1] 范围内的数对应的位置修改为负数
+     * *这样最后扫描一遍，谁不是负数，谁的下标 + 1 就是结果。
+     * *都是负数， 那么 n + 1是返回值。
+     * @param nums
+     * @return
+     */
     public int firstMissingPositive(int[] nums) {
         int n = nums.length;
         for (int i = 0; i < n; i++) {
@@ -39,6 +46,30 @@ class Solution {
         System.out.println(Arrays.toString(nums));
         for (int i = 0; i < n; i++) {
             if(nums[i] > 0){
+                return i + 1;
+            }
+        }
+        return n + 1;
+    }
+    /**
+     * *置换算法，将范围内的数 置换到正确的位置上。
+     */
+
+    public int firstMissingPositiveSwap(int[] nums) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            while(nums[i] > 0 && nums[i] < n + 1 && nums[i] != nums[nums[i] - 1]){
+                /**
+                 * *这次的交换顺序不能改变，
+                 * *因为nums[i]先变的话，nums[nums[i] - 1] 就变了。
+                 */
+                int temp = nums[nums[i] - 1];
+                nums[nums[i] - 1] = nums[i];
+                nums[i] = temp;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if(nums[i] != i + 1) {
                 return i + 1;
             }
         }
