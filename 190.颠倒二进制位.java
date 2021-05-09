@@ -14,7 +14,7 @@
  */
 
 // @lc code=start
-public class Solution {
+class Solution {
     // you need treat n as an unsigned value
     /**
      * *简单的思路，不要想的太麻烦了，循环即可
