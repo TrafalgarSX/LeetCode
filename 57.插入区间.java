@@ -4,7 +4,7 @@ import java.util.Arrays;
 /*
  * @Author: guo yawen
  * @Date: 2021-06-08 18:00:55
- * @LastEditTime: 2021-06-08 23:51:56
+ * @LastEditTime: 2021-06-09 00:25:22
  * @LastEditors: guo yawen
  * @Description: 
  * @FilePath: \LeetCode\57.插入区间.java
@@ -55,13 +55,23 @@ class Solution {
         int right = newInterval[1];
         for (int[] interval: intervals) {
             if(interval[0] > right){
+                //*在插入区间右侧无交集
                 if(!placed){
-                    left = interval[0];
-                    right = interval[1];
+                    merged.add(new int[]{left, right});
                     placed = true;
                 }
-                merged.add(new int[]{left, right});
+                merged.add(interval);
+            }else if(interval[1] < left){
+                //*在插入区间左侧无交集
+                merged.add(interval);
+            }else{
+                //*有交集
+                left = Math.min(interval[0], left);
+                right = Math.max(interval[1], right);
             }
+        }
+        if(!placed){
+            merged.add(new int[]{left, right});
         }
         return merged.toArray(new int[merged.size()][]);
     }
