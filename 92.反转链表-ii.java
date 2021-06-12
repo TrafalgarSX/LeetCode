@@ -1,7 +1,7 @@
 /*
  * @Author: guo yawen
  * @Date: 2021-06-11 11:28:15
- * @LastEditTime: 2021-06-11 13:17:15
+ * @LastEditTime: 2021-06-11 13:34:26
  * @LastEditors: guo yawen
  * @Description: 
  * @FilePath: \LeetCode\92.反转链表-ii.java
@@ -25,27 +25,37 @@
  * }
  */
 class Solution {
+
+    /**
+     * * 把要反转的链表截出来，翻转后再接回去。
+     */
     public ListNode reverseBetween(ListNode head, int left, int right) {
+
+    }
+
+    /**
+     * *一次遍历的方法，很简单
+     */
+    public ListNode reverseBetweenOnce(ListNode head, int left, int right) {
+
         ListNode vHead = new ListNode(-1, head);
-        ListNode temp, pre, cur, ppre = null;
-        pre = head;
+        ListNode pre, cur, next;
+        pre = vHead;
         for (int i = 1; i < left; i++) {
-            ppre = pre;
             pre = pre.next;
         }
-        ListNode fin = pre;
+
         cur = pre.next;
         int count = right - left;
         for (int i = 0; i < count; i++) {
-            temp = cur.next;
-            cur.next = pre;
-            
-            pre = cur;
-            cur = temp;
+            next = cur.next;
+            cur.next = cur.next.next;
+            next.next = pre.next;
+            pre.next = next;
         }
-        ppre.next = pre;
-        fin.next = cur;
-        
+        /**
+         * *为什么这样可以不考虑边界情况 [5] 1 1 这种情况
+         */
         return vHead.next;
     }
 }
